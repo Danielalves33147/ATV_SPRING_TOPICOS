@@ -1,11 +1,34 @@
 package com.daniel.projeto.projeto_api.entities;
 
+import jakarta.persistence.ManyToOne;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+
+@Entity
+@Table(name = "tb_user")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
+    private String telefone;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id")
     private Department department;
+
+    public User(){
+        
+    }
 
     public Long getId() {
         return id;
@@ -39,8 +62,12 @@ public class User {
         this.department = department;
     }
 
-    public User(){
-        
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
 }
